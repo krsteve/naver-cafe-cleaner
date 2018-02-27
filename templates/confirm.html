@@ -1,0 +1,29 @@
+{% extends "layouts/main_layout.html" %}
+
+{% block content %}
+    <h3>아래 카페들에 대한 일괄 탈퇴를 진행합니다. 계속하시겠습니까?</h3>
+    <form role="form" action="{{ url_for('clean') }}" method="post">
+        <table>
+            <thead>
+            <th>카페명 (즐겨찾는 카페엔 별 표시)</th>
+            <th>닉네임</th>
+            <th>최근 방문일시</th>
+            </thead>
+            <tbody>
+            {% for cafe in cafes %}
+                <tr>
+                    <input type="hidden" name="club_id" value="{{ cafe.club_id }}"/>
+                    <td>{% if cafe.is_favorite %}⭐ {% endif %}{{ cafe.name }}</td>
+                    <td>{{ cafe.user_nickname }}</td>
+                    <td>{{ cafe.last_visited }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <hr>
+        <div>
+            계속하려면 네이버 비밀번호를 재확인해주세요.<br>
+            <input type="password" name="password"/><button type="submit">일괄 탈퇴 실행</button>
+        </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "layouts/main_layout.html" %}
+
+{% block content %}
+    <h3>일괄 탈퇴의 진행 결과입니다.</h3>
+        <table>
+            <thead>
+            <th>카페명</th>
+            <th>결과</th>
+            </thead>
+            <tbody>
+            {% for res in result %}
+                <tr>
+                    <td>{{ res['cafe'].name }}</td>
+                    <td>
+                        {% if res['result'] %}
+                            <span style="color: blue; ">성공</span>
+                        {% else %}
+                            <span style="color: red; ">실패</span>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <hr>
+        <div>
+            <a href="{{ url_for('index') }}">메인 화면으로 돌아가기</a>
+        </div>
+    </form>
+{% endblock %}

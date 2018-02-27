@@ -4,7 +4,7 @@ from core.naver import get_naver_session, get_cafes, remove_cafe
 from simplekv.memory import DictStore
 
 app = Flask(__name__)
-app.secret_key = 'You know nothing, Johan Schnee!'
+app.secret_key = 'You know nothing, Johann Schnee!'
 
 store = DictStore()
 KVSessionExtension(store, app)

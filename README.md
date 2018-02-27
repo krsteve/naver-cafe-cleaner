@@ -6,7 +6,7 @@ Worry no more, my friends! **Naver Cafe Cleaner** is here to help! This does not
 
 This utilizes [python-naverlogin](https://github.com/hallazzang/python-naverlogin) by hallazzang to send requests to Naver as a logged in user, and Flask to provide a dead-simple web UI.
 
-Python > 3.6 is required.
+Python >= 3.6 is required.
 
 # Step-by-step Guide
 
@@ -18,4 +18,4 @@ Python > 3.6 is required.
 
     python naver-cafe-cleaner.py
 
-navigate to http://127.0.0.1:5000 and you're good to go!
+Navigate to http://127.0.0.1:5000 and you're good to go!

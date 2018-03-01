@@ -1,29 +1,45 @@
-{% extends "layouts/main_layout.html" %}
-
-{% block content %}
-    <h3>네이버 유저 {{ naver_username }}로 로그인 했습니다.</h3>
-    <span>총 {{ cafes|length }}개의 카페에 가입되어 있습니다.</span>
-    <hr>
-    <form role="form" action="{{ url_for('confirm') }}" method="post">
-        <table>
-            <thead>
+{% extends "layouts/main_layout.html" %} {% block content %}
+<h3>네이버 유저 {{ naver_username }}로 로그인 했습니다.</h3>
+<span>총 {{ cafes|length }}개의 카페에 가입되어 있습니다.</span>
+<hr>
+<form role="form" action="{{ url_for('confirm') }}" method="post">
+    <table>
+        <thead>
             <th>탈퇴</th>
             <th>카페명 (즐겨찾는 카페엔 별 표시)</th>
             <th>닉네임</th>
             <th>최근 방문일시</th>
-            </thead>
-            <tbody>
+        </thead>
+        <tbody>
             {% for cafe in cafes %}
-                <tr>
-                    <td><input type="checkbox" name="club_id" value="{{ cafe.club_id }}"/></td>
-                    <td>{% if cafe.is_favorite %}⭐ {% endif %}{{ cafe.name }}</td>
-                    <td>{{ cafe.user_nickname }}</td>
-                    <td>{{ cafe.last_visited }}</td>
-                </tr>
+            <tr>
+                <td>
+                    <input class='check' type="checkbox" name="club_id" value="{{ cafe.club_id }}" />
+                </td>
+                <td>{% if cafe.is_favorite %}⭐ {% endif %}{{ cafe.name }}</td>
+                <td>{{ cafe.user_nickname }}</td>
+                <td>{{ cafe.last_visited }}</td>
+            </tr>
             {% endfor %}
-            </tbody>
-        </table>
+        </tbody>
+    </table>
     <hr>
+    <div>
+        <button type="button" id="check_all" onclick="checkAll()">모두 체크</button>
         <button type="submit">다음</button>
-    </form>
+    </div>
+</form>
+
+<script>
+    var isChecked = false;
+
+    function checkAll() {
+        console.log(1);
+        isChecked = !isChecked;
+        var checkBoxes = document.getElementsByClassName('check');
+        for (var i = 0; i < checkBoxes.length; i++) {
+            checkBoxes[i].checked = isChecked;
+        }
+    }
+</script>
 {% endblock %}
